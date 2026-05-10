@@ -33,7 +33,7 @@ img{display:block}
 #grain{position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.038}
 
 /* ── NAVBAR ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:300;height:66px;display:flex;align-items:center;gap:1.5rem;padding:0 2.5rem;transition:background .4s,box-shadow .4s,backdrop-filter .4s;border-bottom:1px solid transparent}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:66px;display:flex;align-items:center;gap:1.5rem;padding:0 2.5rem;transition:background .4s,box-shadow .4s;border-bottom:1px solid transparent}
 nav.scrolled{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom-color:rgba(255,255,255,.04);box-shadow:0 8px 40px rgba(0,0,0,.5)}
 .nav-logo{font-family:'Space Mono',monospace;font-size:1.3rem;font-weight:700;letter-spacing:.22em;background:linear-gradient(135deg,#e63950,#ff5c2e,#ffac30);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:letter-spacing .35s,filter .35s;flex-shrink:0}
 .nav-logo:hover{letter-spacing:.3em;filter:brightness(1.2)}
@@ -111,6 +111,8 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 .card-badge.tv{background:rgba(59,130,246,.9)}
 .card-badge.anime{background:rgba(147,51,234,.9)}
 .card-badge.manga{background:rgba(13,148,136,.9)}
+.card-badge.manhwa{background:rgba(20,184,166,.9)}
+.card-badge.manhua{background:rgba(6,182,212,.9)}
 .card-badge.new{background:linear-gradient(135deg,#10b981,#059669)}
 .card-rating{position:absolute;top:.55rem;left:.55rem;display:flex;align-items:center;gap:.2rem;background:rgba(0,0,0,.75);border-radius:.25rem;padding:.2rem .45rem;font-size:.65rem;font-weight:800;z-index:4;backdrop-filter:blur(4px)}
 .card-rating svg{width:9px;height:9px}
@@ -118,6 +120,31 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 .card-title{font-size:.78rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:.35rem;transition:color .25s}
 .card:hover .card-title{color:var(--accent)}
 .card-meta{display:flex;align-items:center;gap:.55rem;font-size:.68rem;color:var(--muted)}
+
+/* ── MANGA SPECIFIC ── */
+.manga-card .card-info{padding:.7rem .75rem .85rem}
+.manga-status{display:inline-block;font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;padding:.15rem .45rem;border-radius:.2rem}
+.manga-status.ongoing{color:var(--success);background:rgba(16,185,129,.12)}
+.manga-status.completed{color:var(--info);background:rgba(59,130,246,.12)}
+.manga-status.hiatus{color:var(--gold);background:rgba(245,158,11,.1)}
+.manga-status.cancelled{color:var(--accent);background:rgba(230,57,80,.12)}
+.manga-tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.4rem}
+.manga-tag{font-size:.58rem;font-weight:700;color:var(--manga);background:rgba(13,148,136,.1);border:1px solid rgba(13,148,136,.2);border-radius:.2rem;padding:.1rem .38rem;letter-spacing:.03em}
+.manga-fr-badge{position:absolute;bottom:.55rem;left:.55rem;font-size:.72rem;z-index:4;background:rgba(0,0,0,.72);border-radius:.22rem;padding:.12rem .32rem;backdrop-filter:blur(4px)}
+
+/* ── MANGA PAGE LAYOUT ── */
+.manga-search-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.manga-search-input{flex:1;min-width:200px;max-width:400px;padding:.5rem 1.1rem;background:rgba(255,255,255,.05);border:1.5px solid var(--border);border-radius:.4rem;color:var(--text);font-size:.82rem;font-family:'Outfit',sans-serif;outline:none;transition:all .3s}
+.manga-search-input:focus{border-color:var(--manga);background:rgba(13,148,136,.06)}
+.manga-search-input::placeholder{color:var(--muted)}
+.manga-tabs{display:flex;gap:.45rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.manga-tab{padding:.42rem 1.1rem;border-radius:2rem;background:transparent;border:1.5px solid var(--border);color:var(--muted);font-size:.76rem;font-weight:700;letter-spacing:.04em;transition:all .25s}
+.manga-tab:hover{color:var(--text);border-color:rgba(13,148,136,.4)}
+.manga-tab.active{background:rgba(13,148,136,.15);border-color:var(--manga);color:var(--manga)}
+.manga-sort-row{display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.manga-sort-label{font-size:.7rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em}
+.manga-sort-btn{padding:.3rem .75rem;border-radius:2rem;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:.71rem;font-weight:700;transition:all .25s}
+.manga-sort-btn.active{background:rgba(13,148,136,.12);border-color:var(--manga);color:var(--manga)}
 
 /* ── GRID ── */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:1.2rem}
@@ -137,14 +164,8 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 .genre-pill.movie-pill.active{background:rgba(230,57,80,.12);border-color:var(--accent);color:var(--accent)}
 .genre-pill.tv-pill:hover{border-color:rgba(59,130,246,.4)}
 .genre-pill.tv-pill.active{background:rgba(59,130,246,.12);border-color:var(--info);color:var(--info)}
-
-/* ── LANG TOGGLE ── */
-.lang-toggle{display:flex;gap:.4rem;margin-bottom:1.4rem;align-items:center}
-.lang-label{font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-right:.3rem}
-.lang-btn{padding:.32rem .85rem;border-radius:2rem;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:.73rem;font-weight:700;transition:all .25s;letter-spacing:.04em}
-.lang-btn:hover{color:var(--text)}
-.lang-btn.active-vf{background:rgba(16,185,129,.12);border-color:var(--success);color:var(--success)}
-.lang-btn.active-vostfr{background:rgba(245,158,11,.1);border-color:var(--gold);color:var(--gold)}
+.genre-pill.manga-pill:hover{border-color:rgba(13,148,136,.4)}
+.genre-pill.manga-pill.active{background:rgba(13,148,136,.12);border-color:var(--manga);color:var(--manga)}
 
 /* ── SKELETON ── */
 .skel{border-radius:var(--r-card);background:linear-gradient(90deg,var(--bg3) 25%,var(--border) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.8s infinite}
@@ -158,7 +179,7 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 .btn-more:hover{background:rgba(230,57,80,.18);border-color:var(--accent);box-shadow:0 0 22px rgba(230,57,80,.2)}
 .btn-more:disabled{opacity:.3}
 
-/* ── VIDEO PLAYER MODAL ── */
+/* ── PLAYER MODAL ── */
 .modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.98);align-items:center;justify-content:center;animation:fadeIn .25s}
 .modal.open{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -171,23 +192,25 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 .player-title-wrap h3{font-size:.95rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#fff}
 .player-title-wrap span{font-size:.72rem;color:var(--muted)}
 
-/* ── SOURCE STRIP avec section LANGUE ── */
-.source-section{display:flex;flex-direction:column;gap:.4rem}
-.source-section-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800}
-.source-strip{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
-.lang-sep{width:1px;height:22px;background:var(--border);margin:0 .2rem;flex-shrink:0}
+/* ── LANG BADGE ── */
+.lang-detected-badge{padding:.28rem .7rem;border-radius:2rem;border:1.5px solid;font-size:.66rem;font-weight:800;letter-spacing:.05em;flex-shrink:0}
+.lang-detected-badge.vf{border-color:var(--success);color:var(--success);background:rgba(16,185,129,.1)}
+.lang-detected-badge.vostfr{border-color:var(--gold);color:var(--gold);background:rgba(245,158,11,.08)}
+.lang-detected-badge.vo{border-color:var(--muted);color:var(--muted);background:rgba(85,85,110,.1)}
 
-/* ── BOUTONS SOURCE ── */
+/* ── LANG TOGGLE ── */
+.lang-sep{width:1px;height:22px;background:var(--border);margin:0 .2rem;flex-shrink:0}
+.source-strip{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.plang-btn{padding:.28rem .7rem;border-radius:2rem;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:.68rem;font-weight:800;transition:all .25s;letter-spacing:.04em}
+.plang-btn.active-vf{background:rgba(16,185,129,.18);border-color:var(--success);color:var(--success)}
+.plang-btn.active-vostfr{background:rgba(245,158,11,.12);border-color:var(--gold);color:var(--gold)}
 .src-btn{padding:.28rem .75rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:.3rem;color:var(--muted);font-size:.7rem;font-weight:700;letter-spacing:.04em;transition:all .25s;position:relative}
 .src-btn.active{background:rgba(230,57,80,.2);border-color:var(--accent);color:#fff}
 .src-btn.ok-badge::after{content:'✓';position:absolute;top:-5px;right:-4px;font-size:.5rem;background:var(--success);color:#fff;border-radius:50%;width:11px;height:11px;display:flex;align-items:center;justify-content:center;line-height:11px;text-align:center}
 .src-btn.err-badge::after{content:'✗';position:absolute;top:-5px;right:-4px;font-size:.5rem;background:var(--accent);color:#fff;border-radius:50%;width:11px;height:11px;display:flex;align-items:center;justify-content:center;line-height:11px;text-align:center}
+.src-btn.vo-only{border-color:rgba(85,85,110,.4)}
 
-/* Boutons langue dans player */
-.plang-btn{padding:.28rem .7rem;border-radius:2rem;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:.68rem;font-weight:800;transition:all .25s;letter-spacing:.04em}
-.plang-btn.active-vf{background:rgba(16,185,129,.18);border-color:var(--success);color:var(--success)}
-.plang-btn.active-vostfr{background:rgba(245,158,11,.12);border-color:var(--gold);color:var(--gold)}
-
+/* ── PLAYER SCREEN ── */
 .player-screen{flex:1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#000}
 .player-screen iframe,.player-screen video{width:100%;height:100%;border:none;position:absolute;inset:0}
 .player-screen video{background:#000;object-fit:contain}
@@ -278,11 +301,14 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 #toast.success{border-color:rgba(16,185,129,.4);color:var(--success)}
 #toast.error{border-color:rgba(230,57,80,.4);color:var(--accent)}
 #toast.info{border-color:rgba(59,130,246,.4);color:var(--info)}
+#toast.warn{border-color:rgba(245,158,11,.4);color:var(--gold)}
 
 /* ── API STATUS ── */
 #apiPing{position:fixed;bottom:.8rem;right:.8rem;z-index:999;font-size:.62rem;font-family:'Space Mono',monospace;padding:.28rem .75rem;border-radius:2rem;background:rgba(7,7,16,.9);border:1px solid var(--border);color:var(--muted);transition:all .5s;backdrop-filter:blur(8px)}
 #apiPing.ok{border-color:rgba(16,185,129,.4);color:var(--success)}
 #apiPing.err{border-color:rgba(230,57,80,.4);color:var(--accent)}
+#swBadge{position:fixed;bottom:.8rem;right:110px;z-index:999;font-size:.62rem;font-family:'Space Mono',monospace;padding:.28rem .75rem;border-radius:2rem;background:rgba(7,7,16,.9);border:1px solid var(--border);color:var(--muted);backdrop-filter:blur(8px);transition:all .5s}
+#swBadge.ok{border-color:rgba(16,185,129,.4);color:var(--success)}
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
@@ -307,7 +333,7 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
   .nav-logo{font-size:1.1rem;letter-spacing:.15em}
   .nav-profile span{display:none}
   main{padding:.9rem}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.8rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem}
   .hero h1{font-size:1.7rem}
 }
 
@@ -324,7 +350,6 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
   <filter id="gf"><feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
   <rect width="100%" height="100%" filter="url(#gf)"/>
 </svg>
-
 <div id="cDot"></div>
 <div id="cRing"></div>
 
@@ -333,24 +358,19 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
   <div class="nav-logo" onclick="goHome()">≡ NOVA</div>
   <div class="nav-links">
     <button class="nav-link active" onclick="switchNav(0,this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-      Accueil
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>Accueil
     </button>
     <button class="nav-link" onclick="switchNav(1,this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-      Films
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>Films
     </button>
     <button class="nav-link" onclick="switchNav(2,this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17,2 12,7 7,2"/></svg>
-      Séries
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17,2 12,7 7,2"/></svg>Séries
     </button>
     <button class="nav-link" onclick="switchNav(3,this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
-      Animés
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>Animés
     </button>
     <button class="nav-link" onclick="switchNav(4,this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-      Manga
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>Manga
     </button>
   </div>
   <div class="nav-right">
@@ -380,18 +400,15 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
         <span id="heroRating">—</span>
       </span>
       <span class="hero-year" id="heroYear">—</span>
-      <span class="hero-genre" id="heroGenre" style="display:none"></span>
     </div>
     <h1 id="heroTitle">NovaStream</h1>
     <p id="heroDesc">Connexion en cours…</p>
     <div class="hero-btns">
       <button class="btn-play" id="heroPlayBtn" onclick="playHero()">
-        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-        Regarder
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>Regarder
       </button>
       <button class="btn-info" onclick="infoHero()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Infos
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Infos
       </button>
     </div>
     <div class="hero-dots" id="heroDots"></div>
@@ -405,60 +422,42 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
   <div id="homePage">
     <div class="section">
       <div class="section-header">
-        <div class="section-title">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg>
-          Films Tendance
-        </div>
+        <div class="section-title"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg>Films Tendance</div>
         <button class="view-all" onclick="goSection('movie')">Voir tout →</button>
       </div>
       <div class="carousel" id="trendingCarousel"></div>
     </div>
     <div class="section">
       <div class="section-header">
-        <div class="section-title">
-          <svg class="gold-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-          Au Cinéma Maintenant
-        </div>
+        <div class="section-title"><svg class="gold-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>Au Cinéma Maintenant</div>
         <button class="view-all" onclick="goSection('movie')">Voir tout →</button>
       </div>
       <div class="carousel" id="nowplayingCarousel"></div>
     </div>
     <div class="section">
       <div class="section-header">
-        <div class="section-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17,2 12,7 7,2"/></svg>
-          Séries Populaires
-        </div>
+        <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17,2 12,7 7,2"/></svg>Séries Populaires</div>
         <button class="view-all" onclick="goSection('tv')">Voir tout →</button>
       </div>
       <div class="carousel" id="seriesCarousel"></div>
     </div>
     <div class="section">
       <div class="section-header">
-        <div class="section-title">
-          <svg class="gold-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-          Séries en Cours de Diffusion
-        </div>
+        <div class="section-title"><svg class="gold-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>Séries en Cours</div>
         <button class="view-all" onclick="goSection('tv')">Voir tout →</button>
       </div>
       <div class="carousel" id="onairCarousel"></div>
     </div>
     <div class="section">
       <div class="section-header">
-        <div class="section-title">
-          <svg class="anime-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
-          Animés Populaires
-        </div>
+        <div class="section-title"><svg class="anime-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>Animés Populaires</div>
         <button class="view-all" onclick="goSection('anime')">Voir tout →</button>
       </div>
       <div class="carousel" id="animeCarousel"></div>
     </div>
     <div class="section">
       <div class="section-header">
-        <div class="section-title">
-          <svg class="manga-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-          Manga & Webtoon
-        </div>
+        <div class="section-title"><svg class="manga-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>Manga & Webtoon</div>
         <button class="view-all" onclick="goSection('manga')">Voir tout →</button>
       </div>
       <div class="carousel" id="mangaCarousel"></div>
@@ -467,11 +466,7 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 
   <!-- FILMS -->
   <div id="moviesPage" style="display:none">
-    <div class="page-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-      Films
-    </div>
-    <!-- Filtre genre Films -->
+    <div class="page-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>Films</div>
     <div class="genre-bar" id="movieGenreBar"></div>
     <div class="grid page-fade" id="moviesGrid"></div>
     <div class="load-more-wrap"><button class="btn-more" id="moviesMore" onclick="loadMore('movie')">Charger plus</button></div>
@@ -479,11 +474,7 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 
   <!-- SÉRIES -->
   <div id="seriesPage" style="display:none">
-    <div class="page-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17,2 12,7 7,2"/></svg>
-      Séries
-    </div>
-    <!-- Filtre genre Séries -->
+    <div class="page-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17,2 12,7 7,2"/></svg>Séries</div>
     <div class="genre-bar" id="tvGenreBar"></div>
     <div class="grid page-fade" id="seriesGrid"></div>
     <div class="load-more-wrap"><button class="btn-more" id="seriesMore" onclick="loadMore('tv')">Charger plus</button></div>
@@ -491,37 +482,63 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 
   <!-- ANIMÉS -->
   <div id="animePage" style="display:none">
-    <div class="page-header">
-      <svg class="anime-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
-      Animés
-    </div>
+    <div class="page-header"><svg class="anime-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>Animés</div>
     <div class="genre-bar" id="animeGenreBar"></div>
     <div class="grid page-fade" id="animeGrid"></div>
     <div class="load-more-wrap"><button class="btn-more" id="animeMore" onclick="loadMore('anime')">Charger plus</button></div>
   </div>
 
-  <!-- MANGA -->
+  <!-- ══ MANGA — PAGE COMPLÈTE ══ -->
   <div id="mangaPage" style="display:none">
     <div class="page-header">
       <svg class="manga-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
       Manga & Webtoon
     </div>
+
+    <!-- Search + langue -->
+    <div class="manga-search-row">
+      <input type="text" class="manga-search-input" id="mangaSearchInput"
+        placeholder="🔍  Rechercher un manga, manhwa, webtoon..."
+        oninput="handleMangaSearch(event)">
+    </div>
+
+    <!-- Tabs -->
+    <div class="manga-tabs">
+      <button class="manga-tab active" data-tab="trending" onclick="setMangaTab('trending',this)">🔥 Tendances</button>
+      <button class="manga-tab" data-tab="latest" onclick="setMangaTab('latest',this)">🆕 Dernières sorties</button>
+      <button class="manga-tab" data-tab="toprated" onclick="setMangaTab('toprated',this)">⭐ Mieux notés</button>
+      <button class="manga-tab" data-tab="all" onclick="setMangaTab('all',this)">📚 Catalogue</button>
+    </div>
+
+    <!-- Genre pills — chargées depuis l'API -->
+    <div class="genre-bar" id="mangaGenreBar">
+      <span style="color:var(--muted);font-size:.75rem;padding:.38rem 0">Chargement des genres…</span>
+    </div>
+
+    <!-- Stats bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;font-size:.72rem;color:var(--muted)">
+      <span id="mangaStatsLabel">—</span>
+      <span style="display:flex;align-items:center;gap:.4rem">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--success);display:inline-block"></span>🇫🇷 dispo en français
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--info);display:inline-block;margin-left:.5rem"></span>🇬🇧 anglais seulement
+      </span>
+    </div>
+
     <div class="grid page-fade" id="mangaGrid"></div>
-    <div class="load-more-wrap"><button class="btn-more" id="mangaMore" onclick="loadMoreManga()">Charger plus</button></div>
+    <div class="load-more-wrap">
+      <button class="btn-more" id="mangaMore" onclick="loadMoreManga()">Charger plus</button>
+    </div>
   </div>
 
   <!-- SEARCH -->
   <div id="searchPage" style="display:none">
-    <div class="page-header">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      Résultats
-    </div>
+    <div class="page-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Résultats</div>
     <div class="grid page-fade" id="searchGrid"></div>
   </div>
 
 </main>
 
-<!-- VIDEO PLAYER MODAL -->
+<!-- ══ VIDEO PLAYER MODAL ══ -->
 <div class="modal" id="playerModal">
   <div class="player-wrap">
     <div class="player-topbar">
@@ -532,7 +549,11 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
         <h3 id="playerTitle">Lecteur</h3>
         <span id="playerSub"></span>
       </div>
-      <!-- Langue VF / VOSTFR -->
+
+      <!-- Badge langue détectée -->
+      <div class="lang-detected-badge vo" id="langBadge" style="display:none">VO</div>
+
+      <!-- Boutons langue -->
       <div style="display:flex;align-items:center;gap:.4rem;flex-shrink:0">
         <span style="font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800">Langue</span>
         <button class="plang-btn active-vf" id="langVF" onclick="setPlayerLang('vf',this)">🇫🇷 VF</button>
@@ -547,23 +568,23 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-6.22-8.56"/></svg>
         <span id="playerLoaderText">Chargement de la source…</span>
       </div>
-      <!-- Écran erreur source -->
       <div class="player-error" id="playerError">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <h3>Source indisponible</h3>
-        <p id="playerErrorMsg">Ce lecteur ne fonctionne pas. Essaie une autre source ci-dessus ou change de langue.</p>
+        <p id="playerErrorMsg">Ce lecteur ne répond pas. Essaie une autre source.</p>
         <div class="player-error-btns">
           <button class="btn-play" onclick="nextSource()" style="font-size:.8rem;padding:.55rem 1.4rem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="9,18 15,12 9,6"/></svg>
-            Source suivante
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="9,18 15,12 9,6"/></svg>Source suivante
           </button>
           <button class="btn-info" onclick="hidePlayerError()" style="font-size:.8rem;padding:.55rem 1.4rem">Fermer</button>
         </div>
       </div>
       <video id="nativeVideo" style="display:none" controls playsinline></video>
+      <!-- sandbox supprime allow-popups et allow-top-navigation → bloque les popups publicitaires -->
       <iframe id="playerIframe"
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-pointer-lock allow-forms allow-downloads"
         allowfullscreen
-        allow="fullscreen; autoplay; encrypted-media; picture-in-picture; clipboard-write; gyroscope; accelerometer"
+        allow="fullscreen; autoplay; encrypted-media; picture-in-picture; clipboard-write"
         referrerpolicy="no-referrer-when-downgrade"
         src="about:blank"></iframe>
     </div>
@@ -579,7 +600,7 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
   </div>
 </div>
 
-<!-- MANGA READER MODAL -->
+<!-- ══ MANGA READER MODAL ══ -->
 <div class="modal" id="readerModal">
   <div class="reader-wrap">
     <div class="reader-topbar">
@@ -597,30 +618,17 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
       </div>
     </div>
     <div class="reader-body" id="readerBody">
-      <div class="reader-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        Sélectionne un chapitre
-      </div>
+      <div class="reader-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>Sélectionne un chapitre</div>
     </div>
     <div class="reader-nav" id="readerNav" style="display:none">
       <div class="page-btns">
-        <button class="btn-chap" id="prevChap" onclick="prevChapter()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
-          Précédent
-        </button>
-        <button class="btn-chap" id="nextChap" onclick="nextChapter()">
-          Suivant
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
-        </button>
+        <button class="btn-chap" id="prevChap" onclick="prevChapter()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>Précédent</button>
+        <button class="btn-chap" id="nextChap" onclick="nextChapter()">Suivant<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg></button>
       </div>
       <span class="page-counter" id="pageCounter"></span>
       <div class="page-btns" id="pageNavBtns" style="display:none">
-        <button class="btn-chap" onclick="prevPage()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
-        </button>
-        <button class="btn-chap" onclick="nextPage()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
-        </button>
+        <button class="btn-chap" onclick="prevPage()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg></button>
+        <button class="btn-chap" onclick="nextPage()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg></button>
       </div>
     </div>
   </div>
@@ -642,12 +650,10 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
       <p class="detail-overview" id="detailOverview"></p>
       <div class="detail-actions">
         <button class="btn-play" onclick="playFromDetail()">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-          Regarder
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>Regarder
         </button>
         <button class="btn-info" onclick="closeDetail()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          Fermer
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Fermer
         </button>
       </div>
       <div class="detail-seasons" id="detailSeasons" style="display:none">
@@ -660,6 +666,7 @@ main{padding:2.5rem;max-width:1900px;margin:0 auto}
 </div>
 
 <div id="apiPing">⬤ Connexion…</div>
+<div id="swBadge" style="display:none">🛡️ AdBlock actif</div>
 <div id="toast"></div>
 
 <script>
@@ -671,148 +678,124 @@ const POSTER   = 'https://image.tmdb.org/t/p/w500';
 const BACKDROP = 'https://image.tmdb.org/t/p/original';
 const EP_STILL = 'https://image.tmdb.org/t/p/w300';
 
-// ── Sources vidéo avec support VF/VOSTFR ─────────────────────
-// lang = 'vf' | 'vostfr'
-// Les sources qui supportent la langue passent le paramètre, les autres l'ignorent
+// ════════════════════════════════════════════════════
+//  SERVICE WORKER — Bloque les pubs au niveau navigateur
+// ════════════════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(reg => {
+    const badge = document.getElementById('swBadge');
+    badge.style.display = '';
+    badge.className = 'ok';
+    badge.textContent = '🛡️ AdBlock actif';
+    console.log('[SW] Enregistré — adblock actif');
+  }).catch(err => {
+    console.warn('[SW] Non disponible (besoin de même origine) :', err.message);
+    // Fallback : injection de feuille de style pour masquer les iframes d'annonces
+    injectAdCss();
+  });
+} else {
+  injectAdCss();
+}
 
+function injectAdCss() {
+  // Masquer les éléments publicitaires communs par CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    [id*="ad"]:not(#apiPing):not(#swBadge):not(#toast):not([id^="player"]):not([id^="reader"]):not([id^="detail"]):not([id^="hero"]) { display:none!important }
+    [class*="advert"],[class*="banner-ad"],[class*="ad-banner"],[class*="pub-"],[class*="-pub"] { display:none!important }
+    iframe[src*="doubleclick"],iframe[src*="googlesyndication"],iframe[src*="adnxs"],iframe[src*="popads"] { display:none!important }
+  `;
+  document.head.appendChild(style);
+}
+
+// ════════════════════════════════════════════════════
+//  SOURCES VIDÉO
+//  Ordre de priorité : Frembed (VF potentielle, HLS natif sans pubs)
+//  puis iframe sources (VF non garantie, signalées VO)
+// ════════════════════════════════════════════════════
 const VIDEO_SOURCES = [
+  { name:'Frembed', type:'frembed', supportsLang:true, voOnly:false },
   {
-    name: 'Frembed',
-    type: 'frembed',
-    supportsLang: true
+    name:'VidLink', supportsLang:true, voOnly:false,
+    movie:(id,lang)=>`https://vidlink.pro/movie/${id}?hl=fr&sub_lang=${lang==='vostfr'?'fr':'none'}&primaryColor=e63950`,
+    tv:   (id,s,e,lang)=>`https://vidlink.pro/tv/${id}/${s}/${e}?hl=fr&sub_lang=${lang==='vostfr'?'fr':'none'}&primaryColor=e63950`
   },
   {
-    name: 'VidLink',
-    supportsLang: true,
-    movie: (id, lang) => `https://vidlink.pro/movie/${id}?hl=${lang==='vf'?'fr':'fr'}&sub_lang=${lang==='vostfr'?'fr':''}`,
-    tv:    (id, s, e, lang) => `https://vidlink.pro/tv/${id}/${s}/${e}?hl=${lang==='vf'?'fr':'fr'}&sub_lang=${lang==='vostfr'?'fr':''}`
+    name:'VidSrc.me', supportsLang:false, voOnly:true,
+    movie:(id)=>`https://vidsrc.me/embed/movie?tmdb=${id}`,
+    tv:   (id,s,e)=>`https://vidsrc.me/embed/tv?tmdb=${id}&season=${s}&episode=${e}`
   },
   {
-    name: 'VidSrc.me',
-    supportsLang: false,
-    movie: (id) => `https://vidsrc.me/embed/movie?tmdb=${id}`,
-    tv:    (id, s, e) => `https://vidsrc.me/embed/tv?tmdb=${id}&season=${s}&episode=${e}`
+    name:'VidSrc.to', supportsLang:false, voOnly:true,
+    movie:(id)=>`https://vidsrc.to/embed/movie/${id}`,
+    tv:   (id,s,e)=>`https://vidsrc.to/embed/tv/${id}/${s}/${e}`
   },
   {
-    name: 'VidSrc.to',
-    supportsLang: false,
-    movie: (id) => `https://vidsrc.to/embed/movie/${id}`,
-    tv:    (id, s, e) => `https://vidsrc.to/embed/tv/${id}/${s}/${e}`
+    name:'VidSrc Pro', supportsLang:false, voOnly:true,
+    movie:(id)=>`https://vidsrc.xyz/embed/movie?tmdb=${id}`,
+    tv:   (id,s,e)=>`https://vidsrc.xyz/embed/tv?tmdb=${id}&season=${s}&episode=${e}`
   },
   {
-    name: 'VidSrc Pro',
-    supportsLang: false,
-    movie: (id) => `https://vidsrc.xyz/embed/movie?tmdb=${id}`,
-    tv:    (id, s, e) => `https://vidsrc.xyz/embed/tv?tmdb=${id}&season=${s}&episode=${e}`
+    name:'EmbedSu', supportsLang:false, voOnly:true,
+    movie:(id)=>`https://embed.su/embed/movie/${id}`,
+    tv:   (id,s,e)=>`https://embed.su/embed/tv/${id}/${s}/${e}`
   },
   {
-    name: 'EmbedSu',
-    supportsLang: false,
-    movie: (id) => `https://embed.su/embed/movie/${id}`,
-    tv:    (id, s, e) => `https://embed.su/embed/tv/${id}/${s}/${e}`
+    name:'Autoembed', supportsLang:false, voOnly:true,
+    movie:(id)=>`https://player.autoembed.cc/embed/movie/${id}`,
+    tv:   (id,s,e)=>`https://player.autoembed.cc/embed/tv/${id}/${s}/${e}`
   },
   {
-    name: 'Autoembed',
-    supportsLang: false,
-    movie: (id) => `https://player.autoembed.cc/embed/movie/${id}`,
-    tv:    (id, s, e) => `https://player.autoembed.cc/embed/tv/${id}/${s}/${e}`
+    name:'SMashyStream', supportsLang:false, voOnly:true,
+    movie:(id)=>`https://embed.smashystream.com/playere.php?tmdb=${id}`,
+    tv:   (id,s,e)=>`https://embed.smashystream.com/playere.php?tmdb=${id}&season=${s}&episode=${e}`
   },
   {
-    name: 'NontonGo',
-    supportsLang: false,
-    movie: (id) => `https://www.NontonGo.net/embed/movie/${id}`,
-    tv:    (id, s, e) => `https://www.NontonGo.net/embed/tv/${id}/${s}/${e}`
+    name:'2Embed', supportsLang:false, voOnly:true,
+    movie:(id)=>`https://www.2embed.cc/embed/${id}`,
+    tv:   (id,s,e)=>`https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`
   },
   {
-    name: 'SMashyStream',
-    supportsLang: false,
-    movie: (id) => `https://embed.smashystream.com/playere.php?tmdb=${id}`,
-    tv:    (id, s, e) => `https://embed.smashystream.com/playere.php?tmdb=${id}&season=${s}&episode=${e}`
-  },
-  {
-    name: '2Embed',
-    supportsLang: false,
-    movie: (id) => `https://www.2embed.cc/embed/${id}`,
-    tv:    (id, s, e) => `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`
-  },
-  {
-    name: 'MultiEmbed',
-    supportsLang: false,
-    movie: (id) => `https://multiembed.mov/?video_id=${id}&tmdb=1`,
-    tv:    (id, s, e) => `https://multiembed.mov/?video_id=${id}&tmdb=1&s=${s}&e=${e}`
-  },
-  {
-    name: 'GoStream',
-    supportsLang: false,
-    movie: (id) => `https://gostream.site/movie/${id}`,
-    tv:    (id, s, e) => `https://gostream.site/tv/${id}?episode=${e}&season=${s}`
+    name:'MultiEmbed', supportsLang:false, voOnly:true,
+    movie:(id)=>`https://multiembed.mov/?video_id=${id}&tmdb=1`,
+    tv:   (id,s,e)=>`https://multiembed.mov/?video_id=${id}&tmdb=1&s=${s}&e=${e}`
   }
 ];
 
-// ── Genres Films TMDB ─────────────────────────────────────────
+// ── Genres Films ─────────────────────────────────────────────
 const MOVIE_GENRES = [
-  { id: '',    label: 'Tous' },
-  { id: '28',  label: 'Action' },
-  { id: '35',  label: 'Comédie' },
-  { id: '18',  label: 'Drame' },
-  { id: '27',  label: 'Horreur' },
-  { id: '878', label: 'Science-Fiction' },
-  { id: '53',  label: 'Thriller' },
-  { id: '10749', label: 'Romance' },
-  { id: '16',  label: 'Animation' },
-  { id: '12',  label: 'Aventure' },
-  { id: '80',  label: 'Crime' },
-  { id: '14',  label: 'Fantaisie' },
-  { id: '36',  label: 'Histoire' },
-  { id: '10402', label: 'Musique' },
-  { id: '9648', label: 'Mystère' },
-  { id: '10752', label: 'Guerre' },
+  {id:'',label:'Tous'},{id:'28',label:'Action'},{id:'35',label:'Comédie'},
+  {id:'18',label:'Drame'},{id:'27',label:'Horreur'},{id:'878',label:'Sci-Fi'},
+  {id:'53',label:'Thriller'},{id:'10749',label:'Romance'},{id:'16',label:'Animation'},
+  {id:'12',label:'Aventure'},{id:'80',label:'Crime'},{id:'14',label:'Fantaisie'},
+  {id:'36',label:'Histoire'},{id:'10752',label:'Guerre'},
 ];
-
-// ── Genres Séries TMDB ────────────────────────────────────────
 const TV_GENRES = [
-  { id: '',     label: 'Tous' },
-  { id: '10759', label: 'Action' },
-  { id: '35',   label: 'Comédie' },
-  { id: '80',   label: 'Crime' },
-  { id: '18',   label: 'Drame' },
-  { id: '10751', label: 'Famille' },
-  { id: '10762', label: 'Kids' },
-  { id: '9648', label: 'Mystère' },
-  { id: '10765', label: 'Sci-Fi' },
-  { id: '10767', label: 'Talk Show' },
-  { id: '10768', label: 'Guerre' },
-  { id: '37',   label: 'Western' },
+  {id:'',label:'Tous'},{id:'10759',label:'Action'},{id:'35',label:'Comédie'},
+  {id:'80',label:'Crime'},{id:'18',label:'Drame'},{id:'10751',label:'Famille'},
+  {id:'9648',label:'Mystère'},{id:'10765',label:'Sci-Fi'},{id:'10768',label:'Guerre'},
 ];
-
-// ── Genres Animés TMDB ────────────────────────────────────────
 const ANIME_GENRES = [
-  { id: '',     label: 'Tous' },
-  { id: '10759', label: 'Action' },
-  { id: '35',   label: 'Comédie' },
-  { id: '18',   label: 'Drame' },
-  { id: '10765', label: 'Sci-Fi & Fantasy' },
-  { id: '9648', label: 'Mystère' },
-  { id: '10762', label: 'Kids' },
-  { id: '10751', label: 'Famille' },
+  {id:'',label:'Tous'},{id:'10759',label:'Action'},{id:'35',label:'Comédie'},
+  {id:'18',label:'Drame'},{id:'10765',label:'Sci-Fi & Fantasy'},{id:'9648',label:'Mystère'},
+  {id:'10762',label:'Kids'},{id:'10751',label:'Famille'},
 ];
 
 // ════════════════════════════════════════════════════
 //  STATE
 // ════════════════════════════════════════════════════
-let heroItems=[], heroIdx=0, heroTimer=null;
-let currentItem=null, currentType=null, currentSeason=1, currentEp=1, currentSource=0;
-let playerLang='vf'; // 'vf' | 'vostfr'
-let activeAnimeGenre='';
-let activeMovieGenre='';
-let activeTvGenre='';
-let detailItem=null, detailShowId=null;
-let mangaChapters=[], mangaPages=[], pageIdx=0, readerMode='scroll';
-let pages={ movie:1, tv:1, anime:1 };
-let mangaOffset=0;
+let heroItems=[],heroIdx=0,heroTimer=null;
+let currentItem=null,currentType=null,currentSeason=1,currentEp=1,currentSource=0;
+let playerLang='vf';
+let activeAnimeGenre='',activeMovieGenre='',activeTvGenre='';
+let detailItem=null;
+let mangaChapters=[],mangaPages=[],pageIdx=0,readerMode='scroll';
+let pages={movie:1,tv:1,anime:1};
+let mangaOffset=0,mangaTotal=0,mangaTab='trending',mangaGenreId='';
+let mangaSearchTimer=null;
 let hlsInst=null;
 let searchTimer=null;
-let srcStatus={}; // { idx: 'ok'|'err' }
+let srcStatus={};
 
 const IC={
   play:`<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>`,
@@ -820,6 +803,7 @@ const IC={
   film:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>`,
   tv:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17,2 12,7 7,2"/></svg>`,
   star:`<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg>`,
+  spin:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-6.22-8.56"/></svg>`,
 };
 
 // ════════════════════════════════════════════════════
@@ -830,7 +814,7 @@ async function api(ep){
     const r=await fetch(`${API_BASE}/api${ep}`,{signal:AbortSignal.timeout(14000)});
     if(!r.ok) throw new Error(`HTTP ${r.status}`);
     return await r.json();
-  }catch(e){ console.error('[api]',ep,e.message); return null; }
+  }catch(e){console.error('[api]',ep,e.message);return null;}
 }
 
 // ════════════════════════════════════════════════════
@@ -848,9 +832,9 @@ async function checkAPI(){
   const el=document.getElementById('apiPing');
   try{
     const r=await fetch(`${API_BASE}/health`,{signal:AbortSignal.timeout(9000)});
-    if(r.ok){ el.textContent='⬤ API OK'; el.className='ok'; }
+    if(r.ok){el.textContent='⬤ API OK';el.className='ok';}
     else throw new Error();
-  }catch{ el.textContent='⬤ Hors ligne'; el.className='err'; }
+  }catch{el.textContent='⬤ Hors ligne';el.className='err';}
 }
 
 // ════════════════════════════════════════════════════
@@ -860,28 +844,27 @@ async function loadHome(){
   ['trendingCarousel','nowplayingCarousel','seriesCarousel','onairCarousel','animeCarousel','mangaCarousel']
     .forEach(id=>skeletonCarousel(id));
 
-  const [trending,nowp,series,onair,anime]=await Promise.all([
+  const [trending,nowp,series,onair,anime,manga]=await Promise.all([
     api('/trending/movie'),
     api('/nowplaying'),
     api('/popular/tv'),
     api('/onair'),
-    api('/anime?page=1')
+    api('/anime?page=1'),
+    api('/manga/trending?limit=14')
   ]);
 
   if(trending?.results){
-    heroItems=trending.results.slice(0,6);
-    heroIdx=0; updateHero(0);
-    renderCarousel('trendingCarousel', trending.results.slice(0,16), 'movie');
+    heroItems=trending.results.slice(0,6); heroIdx=0; updateHero(0);
+    renderCarousel('trendingCarousel',trending.results.slice(0,16),'movie');
   }
-  if(nowp?.results)    renderCarousel('nowplayingCarousel', nowp.results.slice(0,16), 'movie', true);
-  if(series?.results)  renderCarousel('seriesCarousel',   series.results.slice(0,16), 'tv');
-  if(onair?.results)   renderCarousel('onairCarousel',    onair.results.slice(0,16), 'tv', true);
-  if(anime?.results)   renderCarousel('animeCarousel',    anime.results.slice(0,16), 'anime');
-
-  loadMangaCarousel();
+  if(nowp?.results)   renderCarousel('nowplayingCarousel',nowp.results.slice(0,16),'movie',true);
+  if(series?.results) renderCarousel('seriesCarousel',series.results.slice(0,16),'tv');
+  if(onair?.results)  renderCarousel('onairCarousel',onair.results.slice(0,16),'tv',true);
+  if(anime?.results)  renderCarousel('animeCarousel',anime.results.slice(0,16),'anime');
+  if(manga?.data)     renderMangaCarousel('mangaCarousel',manga.data.slice(0,14));
 }
 
-function skeletonCarousel(id, n=10){
+function skeletonCarousel(id,n=10){
   const el=document.getElementById(id);
   if(el) el.innerHTML=Array(n).fill(`<div class="skel skel-card"></div>`).join('');
 }
@@ -891,56 +874,44 @@ function skeletonCarousel(id, n=10){
 // ════════════════════════════════════════════════════
 function updateHero(idx){
   if(!heroItems[idx]) return;
-  clearTimeout(heroTimer);
-  heroIdx=idx;
-  const item=heroItems[idx];
-  currentItem=item;
-
-  document.getElementById('heroBg').style.backgroundImage=
-    item.backdrop_path ? `url('${BACKDROP+item.backdrop_path}')` : '';
+  clearTimeout(heroTimer); heroIdx=idx;
+  const item=heroItems[idx]; currentItem=item;
+  document.getElementById('heroBg').style.backgroundImage=item.backdrop_path?`url('${BACKDROP+item.backdrop_path}')`:'';
   document.getElementById('heroTitle').textContent=item.title||item.name||'';
   document.getElementById('heroDesc').textContent=(item.overview||'').slice(0,200)+(item.overview?.length>200?'…':'');
   document.getElementById('heroRating').textContent=(item.vote_average||0).toFixed(1);
   document.getElementById('heroYear').textContent=(item.release_date||item.first_air_date||'').slice(0,4);
-
-  const heroPlayBtn=document.getElementById('heroPlayBtn');
-  heroPlayBtn.dataset.id=item.id;
-  heroPlayBtn.dataset.type=item.media_type||'movie';
-  heroPlayBtn.dataset.title=item.title||item.name||'';
-
-  document.getElementById('heroDots').innerHTML=
-    heroItems.map((_,i)=>`<button class="hero-dot${i===idx?' active':''}" onclick="updateHero(${i})"></button>`).join('');
-
-  heroTimer=setTimeout(()=>updateHero((idx+1)%heroItems.length), 9000);
+  const b=document.getElementById('heroPlayBtn');
+  b.dataset.id=item.id; b.dataset.type=item.media_type||'movie'; b.dataset.title=item.title||item.name||'';
+  document.getElementById('heroDots').innerHTML=heroItems.map((_,i)=>
+    `<button class="hero-dot${i===idx?' active':''}" onclick="updateHero(${i})"></button>`).join('');
+  heroTimer=setTimeout(()=>updateHero((idx+1)%heroItems.length),9000);
 }
 function playHero(){
   const b=document.getElementById('heroPlayBtn');
-  openPlayer(b.dataset.id, b.dataset.type||'movie', b.dataset.title);
+  openPlayer(b.dataset.id,b.dataset.type||'movie',b.dataset.title);
 }
 function infoHero(){
-  if(heroItems[heroIdx]) openDetail(heroItems[heroIdx].id, heroItems[heroIdx].media_type||'movie');
+  if(heroItems[heroIdx]) openDetail(heroItems[heroIdx].id,heroItems[heroIdx].media_type||'movie');
 }
 
 // ════════════════════════════════════════════════════
-//  CARDS
+//  CARDS TMDB
 // ════════════════════════════════════════════════════
-function ratingClass(v){ return v>=8?'rating-high':v>=6?'rating-mid':'rating-low'; }
-function ratingColor(v){ return v>=8?'var(--success)':v>=6?'var(--gold)':'var(--accent)'; }
+function ratingColor(v){return v>=8?'var(--success)':v>=6?'var(--gold)':'var(--accent)';}
+function ratingClass(v){return v>=8?'rating-high':v>=6?'rating-mid':'rating-low';}
 
-function createCard(item, type, isNew=false){
-  const id    = item.id;
-  const title = (item.title||item.name||'Sans titre').replace(/'/g,"\\'").replace(/"/g,'&quot;');
-  const poster= item.poster_path ? POSTER+item.poster_path : '';
-  const rating= (item.vote_average||0);
-  const year  = (item.release_date||item.first_air_date||'').slice(0,4);
-  const badge = type==='anime'?'anime':type==='manga'?'manga':type==='tv'?'tv':'movie';
-  const placeholderIcon = type==='manga'?IC.book:type==='tv'||type==='anime'?IC.tv:IC.film;
-
+function createCard(item,type,isNew=false){
+  const id=item.id;
+  const title=(item.title||item.name||'Sans titre').replace(/'/g,"\\'");
+  const poster=item.poster_path?POSTER+item.poster_path:'';
+  const rating=item.vote_average||0;
+  const year=(item.release_date||item.first_air_date||'').slice(0,4);
+  const badge=type==='anime'?'anime':type==='tv'?'tv':'movie';
+  const placeholder=type==='tv'||type==='anime'?IC.tv:IC.film;
   return `<div class="card card-anim" onclick="openDetail(${id},'${type}')" title="${title}">
     <div class="card-img">
-      ${poster
-        ? `<img src="${poster}" alt="${title}" loading="lazy">`
-        : `<div class="card-placeholder">${placeholderIcon}</div>`}
+      ${poster?`<img src="${poster}" alt="${title}" loading="lazy">`:`<div class="card-placeholder">${placeholder}</div>`}
       <div class="card-overlay"></div>
       <button class="card-play" onclick="event.stopPropagation();openPlayer(${id},'${type}','${title}')">${IC.play}</button>
       <div class="card-badge ${badge}">${badge.toUpperCase()}</div>
@@ -954,127 +925,227 @@ function createCard(item, type, isNew=false){
   </div>`;
 }
 
-function renderCarousel(id, items, type, isNew=false){
+function renderCarousel(id,items,type,isNew=false){
   const el=document.getElementById(id);
   if(el) el.innerHTML=items.map(i=>createCard(i,type,isNew)).join('');
 }
 
 // ════════════════════════════════════════════════════
-//  MANGA CAROUSEL
+//  MANGA CARDS
 // ════════════════════════════════════════════════════
-async function loadMangaCarousel(){
-  const data=await api('/manga/list?limit=14&offset=0&lang=fr');
-  const el=document.getElementById('mangaCarousel');
-  if(!el) return;
-  if(!data?.data?.length){ el.innerHTML='<div style="color:var(--muted);padding:2rem">Indisponible</div>'; return; }
-  el.innerHTML=data.data.map(m=>mangaCard(m)).join('');
-}
+const STATUS_MAP={
+  ongoing:{label:'En cours',cls:'ongoing'},
+  completed:{label:'Terminé',cls:'completed'},
+  hiatus:{label:'Pause',cls:'hiatus'},
+  cancelled:{label:'Annulé',cls:'cancelled'}
+};
 
 function mangaCard(m){
-  const title=(m.attributes?.title?.fr||m.attributes?.title?.en||'Manga').replace(/'/g,"\\'");
+  const attrs=m.attributes||{};
+  const title=attrs.title?.fr||attrs.title?.en||
+    (attrs.altTitles||[]).find(t=>t.fr)?.fr||
+    (attrs.altTitles||[]).find(t=>t.en)?.en||'Manga';
+
   const cover=m.relationships?.find(r=>r.type==='cover_art');
-  const coverUrl=cover?`https://uploads.mangadex.org/covers/${m.id}/${cover.attributes?.fileName}.256.jpg`:'';
-  return `<div class="card card-anim" onclick="openMangaReader('${m.id}','${title}')">
+  const coverUrl=cover?.attributes?.fileName
+    ?`https://uploads.mangadex.org/covers/${m.id}/${cover.attributes.fileName}.512.jpg`:'';
+
+  const author=m.relationships?.find(r=>r.type==='author');
+  const authorName=author?.attributes?.name||'';
+
+  const origLang=attrs.originalLanguage;
+  const typeLabel=origLang==='ko'?'MANHWA':origLang==='zh'||origLang==='zh-hk'?'MANHUA':'MANGA';
+  const badgeCls=origLang==='ko'?'manhwa':origLang?.startsWith('zh')?'manhua':'manga';
+
+  const hasFr=(attrs.availableTranslatedLanguages||[]).includes('fr');
+  const status=STATUS_MAP[attrs.status]||null;
+
+  const genreTags=(attrs.tags||[])
+    .filter(t=>t.attributes?.group==='genre')
+    .slice(0,2)
+    .map(t=>t.attributes?.name?.fr||t.attributes?.name?.en||'')
+    .filter(Boolean);
+
+  const safeTitle=title.replace(/'/g,"\\'").replace(/`/g,"'");
+  const safeId=m.id;
+
+  return `<div class="card card-anim manga-card" onclick="openMangaReader('${safeId}','${safeTitle}')">
     <div class="card-img">
-      ${coverUrl?`<img src="${coverUrl}" alt="${title}" loading="lazy">`:`<div class="card-placeholder">${IC.book}</div>`}
+      ${coverUrl?`<img src="${coverUrl}" alt="${safeTitle}" loading="lazy"
+        onerror="this.parentElement.querySelector('.card-placeholder').style.display='flex';this.style.display='none'">`:``}
+      <div class="card-placeholder" style="${coverUrl?'display:none':''}">
+        ${IC.book}
+      </div>
       <div class="card-overlay"></div>
-      <button class="card-play" onclick="event.stopPropagation();openMangaReader('${m.id}','${title}')">${IC.book}</button>
-      <div class="card-badge manga">MANGA</div>
+      <button class="card-play" onclick="event.stopPropagation();openMangaReader('${safeId}','${safeTitle}')">${IC.book}</button>
+      <div class="card-badge ${badgeCls}">${typeLabel}</div>
+      <div class="manga-fr-badge">${hasFr?'🇫🇷':'🇬🇧'}</div>
     </div>
     <div class="card-info">
-      <div class="card-title">${title}</div>
-      <div class="card-meta"><span>MangaDex</span></div>
+      <div class="card-title" title="${safeTitle}">${title}</div>
+      <div class="card-meta" style="gap:.4rem;flex-wrap:wrap">
+        ${status?`<span class="manga-status ${status.cls}">${status.label}</span>`:''}
+        ${authorName?`<span style="font-size:.64rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:110px" title="${authorName}">${authorName}</span>`:''}
+      </div>
+      ${genreTags.length?`<div class="manga-tags">${genreTags.map(t=>`<span class="manga-tag">${t}</span>`).join('')}</div>`:''}
     </div>
   </div>`;
 }
 
+function renderMangaCarousel(id,items){
+  const el=document.getElementById(id);
+  if(el) el.innerHTML=items.map(m=>mangaCard(m)).join('');
+}
+
 // ════════════════════════════════════════════════════
-//  GENRE BARS — Films, Séries, Animés
+//  MANGA PAGE — Genres / Tabs / Pagination
+// ════════════════════════════════════════════════════
+async function initMangaPage(){
+  // Charger les genres depuis l'API MangaDex
+  const data=await api('/manga/tags');
+  const bar=document.getElementById('mangaGenreBar');
+  if(data?.data?.length){
+    bar.innerHTML=`<button class="genre-pill manga-pill active" data-tagid="" onclick="setMangaGenre('',this)">Tous</button>`+
+      data.data.slice(0,22).map(tag=>
+        `<button class="genre-pill manga-pill" data-tagid="${tag.id}" onclick="setMangaGenre('${tag.id}',this)">${tag.name}</button>`
+      ).join('');
+  } else {
+    bar.innerHTML='';
+  }
+}
+
+function setMangaGenre(tagId,btn){
+  mangaGenreId=tagId; mangaOffset=0;
+  document.querySelectorAll('#mangaGenreBar .genre-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  refreshMangaGrid(true);
+}
+
+function setMangaTab(tab,btn){
+  mangaTab=tab; mangaOffset=0; mangaGenreId='';
+  document.querySelectorAll('.manga-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#mangaGenreBar .genre-pill').forEach((b,i)=>b.classList.toggle('active',i===0));
+  refreshMangaGrid(true);
+}
+
+function getMangaEndpoint(offset=0){
+  const limit=24;
+  if(mangaGenreId) return `/manga/bytag/${mangaGenreId}?limit=${limit}&offset=${offset}`;
+  switch(mangaTab){
+    case 'latest':   return `/manga/latest?limit=${limit}&offset=${offset}`;
+    case 'toprated': return `/manga/toprated?limit=${limit}&offset=${offset}`;
+    case 'all':      return `/manga/list?limit=${limit}&offset=${offset}`;
+    default:         return `/manga/trending?limit=${limit}&offset=${offset}`;
+  }
+}
+
+async function refreshMangaGrid(reset=true){
+  const grid=document.getElementById('mangaGrid');
+  const btn=document.getElementById('mangaMore');
+  const stats=document.getElementById('mangaStatsLabel');
+
+  if(reset){
+    mangaOffset=0;
+    grid.innerHTML=Array(24).fill(`<div class="skel skel-card grid-mode"></div>`).join('');
+  }
+  btn.textContent='Chargement…'; btn.disabled=true;
+
+  const ep=getMangaEndpoint(mangaOffset);
+  const data=await api(ep);
+
+  if(reset) grid.innerHTML='';
+
+  if(data?.data?.length){
+    grid.insertAdjacentHTML('beforeend',data.data.map(m=>mangaCard(m)).join(''));
+    mangaOffset+=data.data.length;
+    mangaTotal=data.total||0;
+    const tabLabels={trending:'tendances',latest:'sorties',toprated:'mieux notés',all:'catalogue'};
+    stats.textContent=`${mangaTotal.toLocaleString()} résultats — ${tabLabels[mangaTab]||''}${mangaGenreId?' (filtré)':''}`;
+    if(mangaOffset<mangaTotal){btn.textContent='Charger plus';btn.disabled=false;}
+    else{btn.textContent='Tout affiché ✓';btn.disabled=true;}
+  } else {
+    if(reset) grid.innerHTML=`<div style="color:var(--muted);padding:3rem;grid-column:1/-1;text-align:center;font-size:.88rem">Aucun manga trouvé pour cette sélection.</div>`;
+    btn.textContent='Fin'; btn.disabled=true;
+    stats.textContent='';
+  }
+}
+
+function loadMoreManga(){refreshMangaGrid(false);}
+
+function handleMangaSearch(e){
+  clearTimeout(mangaSearchTimer);
+  mangaSearchTimer=setTimeout(doMangaSearch,500);
+}
+
+async function doMangaSearch(){
+  const q=(document.getElementById('mangaSearchInput')?.value||'').trim();
+  if(!q){refreshMangaGrid(true);return;}
+  const grid=document.getElementById('mangaGrid');
+  grid.innerHTML=Array(8).fill(`<div class="skel skel-card grid-mode"></div>`).join('');
+  const data=await api(`/manga/search?q=${encodeURIComponent(q)}`);
+  grid.innerHTML='';
+  if(data?.data?.length){
+    grid.innerHTML=data.data.map(m=>mangaCard(m)).join('');
+    document.getElementById('mangaStatsLabel').textContent=`${data.data.length} résultat(s) pour "${q}"`;
+  } else {
+    grid.innerHTML=`<div style="color:var(--muted);padding:3rem;grid-column:1/-1;text-align:center">Aucun résultat pour « ${q} »</div>`;
+  }
+}
+
+// ════════════════════════════════════════════════════
+//  GENRE BARS TMDB
 // ════════════════════════════════════════════════════
 function buildGenreBars(){
-  buildGenreBar('movieGenreBar', MOVIE_GENRES, 'movie-pill', (gid, btn) => setMovieGenre(gid, btn));
-  buildGenreBar('tvGenreBar',    TV_GENRES,    'tv-pill',    (gid, btn) => setTvGenre(gid, btn));
-  buildGenreBar('animeGenreBar', ANIME_GENRES, '',           (gid, btn) => setAnimeGenre(gid, btn));
-}
-
-function buildGenreBar(barId, genres, pillClass, onClickFn){
-  const bar=document.getElementById(barId);
-  if(!bar) return;
-  bar.innerHTML=genres.map((g,i)=>
-    `<button class="genre-pill ${pillClass}${i===0?' active':''}" onclick="(${onClickFn.toString()})('${g.id}',this)">${g.label}</button>`
-  ).join('');
-}
-
-// Méthode alternative plus propre
-function setupGenreBarEvents(){
-  // Films
-  document.querySelectorAll('#movieGenreBar .genre-pill').forEach(btn => {
-    btn.onclick = () => setMovieGenre(btn.dataset.gid, btn);
-  });
-}
-
-// Rebuild genre bars with data attributes instead
-function buildGenreBars(){
-  const build = (barId, genres, pillClass, handler) => {
-    const bar = document.getElementById(barId);
-    if(!bar) return;
-    bar.innerHTML = genres.map((g, i) =>
-      `<button class="genre-pill ${pillClass}${i===0?' active':''}" data-gid="${g.id}" data-handler="${handler}">${g.label}</button>`
+  build('movieGenreBar',MOVIE_GENRES,'movie-pill','movie');
+  build('tvGenreBar',TV_GENRES,'tv-pill','tv');
+  build('animeGenreBar',ANIME_GENRES,'','anime');
+  function build(barId,genres,pillClass,handler){
+    const bar=document.getElementById(barId); if(!bar) return;
+    bar.innerHTML=genres.map((g,i)=>
+      `<button class="genre-pill ${pillClass}${i===0?' active':''}" data-gid="${g.id}" data-h="${handler}">${g.label}</button>`
     ).join('');
-    bar.querySelectorAll('.genre-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if(handler==='movie') setMovieGenre(btn.dataset.gid, btn);
-        else if(handler==='tv') setTvGenre(btn.dataset.gid, btn);
-        else if(handler==='anime') setAnimeGenre(btn.dataset.gid, btn);
+    bar.querySelectorAll('.genre-pill').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const h=btn.dataset.h,gid=btn.dataset.gid;
+        if(h==='movie') setMovieGenre(gid,btn);
+        else if(h==='tv') setTvGenre(gid,btn);
+        else if(h==='anime') setAnimeGenre(gid,btn);
       });
     });
-  };
-  build('movieGenreBar', MOVIE_GENRES, 'movie-pill', 'movie');
-  build('tvGenreBar',    TV_GENRES,    'tv-pill',    'tv');
-  build('animeGenreBar', ANIME_GENRES, '',           'anime');
+  }
 }
 
-async function setMovieGenre(gid, btn){
+async function apiDiscover(type,gid,page=1){
+  return await api(`/discover/${type}?with_genres=${gid}&page=${page}&sort_by=popularity.desc`);
+}
+
+async function setMovieGenre(gid,btn){
   activeMovieGenre=gid;
   document.querySelectorAll('#movieGenreBar .genre-pill').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  pages.movie=1;
+  btn.classList.add('active'); pages.movie=1;
   const grid=document.getElementById('moviesGrid');
   grid.innerHTML=Array(20).fill(`<div class="skel skel-card grid-mode"></div>`).join('');
-  const ep = gid ? `/discover/movie?with_genres=${gid}&page=1` : `/popular/movie?page=1`;
-  // On passe par notre endpoint discover si genre actif
-  let data;
-  if(gid){
-    data = await apiDiscover('movie', gid, 1);
-  } else {
-    data = await api(`/popular/movie?page=1`);
-  }
+  const data=gid?await apiDiscover('movie',gid,1):await api('/popular/movie?page=1');
   grid.innerHTML='';
   if(data?.results?.length) grid.innerHTML=data.results.map(i=>createCard(i,'movie')).join('');
 }
 
-async function setTvGenre(gid, btn){
+async function setTvGenre(gid,btn){
   activeTvGenre=gid;
   document.querySelectorAll('#tvGenreBar .genre-pill').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  pages.tv=1;
+  btn.classList.add('active'); pages.tv=1;
   const grid=document.getElementById('seriesGrid');
   grid.innerHTML=Array(20).fill(`<div class="skel skel-card grid-mode"></div>`).join('');
-  let data;
-  if(gid){
-    data = await apiDiscover('tv', gid, 1);
-  } else {
-    data = await api(`/popular/tv?page=1`);
-  }
+  const data=gid?await apiDiscover('tv',gid,1):await api('/popular/tv?page=1');
   grid.innerHTML='';
   if(data?.results?.length) grid.innerHTML=data.results.map(i=>createCard(i,'tv')).join('');
 }
 
-async function setAnimeGenre(gid, btn){
+async function setAnimeGenre(gid,btn){
   activeAnimeGenre=gid;
   document.querySelectorAll('#animeGenreBar .genre-pill').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  pages.anime=1;
+  btn.classList.add('active'); pages.anime=1;
   const grid=document.getElementById('animeGrid');
   grid.innerHTML=Array(20).fill(`<div class="skel skel-card grid-mode"></div>`).join('');
   const ep=gid?`/anime?genre=${gid}&page=1`:'/anime?page=1';
@@ -1083,20 +1154,14 @@ async function setAnimeGenre(gid, btn){
   if(data?.results?.length) grid.innerHTML=data.results.map(i=>createCard(i,'anime')).join('');
 }
 
-// Discover via TMDB (genres films/séries) — passe par le backend
-async function apiDiscover(type, genreId, page=1){
-  // On utilise l'endpoint popular avec genre via discover
-  return await api(`/discover/${type}?with_genres=${genreId}&page=${page}&sort_by=popularity.desc`);
-}
-
 // ════════════════════════════════════════════════════
 //  SECTIONS + PAGINATION
 // ════════════════════════════════════════════════════
 const cfgMap={
-  movie:{ page:'moviesPage', grid:'moviesGrid', more:'moviesMore', ep:'/popular/movie' },
-  tv:   { page:'seriesPage', grid:'seriesGrid',  more:'seriesMore', ep:'/popular/tv' },
-  anime:{ page:'animePage',  grid:'animeGrid',   more:'animeMore',  ep:'/anime' },
-  manga:{ page:'mangaPage',  grid:'mangaGrid',   more:'mangaMore',  ep:null }
+  movie:{page:'moviesPage',grid:'moviesGrid',more:'moviesMore',ep:'/popular/movie'},
+  tv:   {page:'seriesPage',grid:'seriesGrid',more:'seriesMore',ep:'/popular/tv'},
+  anime:{page:'animePage', grid:'animeGrid', more:'animeMore', ep:'/anime'},
+  manga:{page:'mangaPage', grid:'mangaGrid', more:'mangaMore', ep:null}
 };
 
 async function goSection(type){
@@ -1106,21 +1171,23 @@ async function goSection(type){
   const cfg=cfgMap[type]; if(!cfg) return;
   document.getElementById(cfg.page).style.display='';
 
-  if(type==='manga'){ mangaOffset=0; loadMangaGrid(true); return; }
+  if(type==='manga'){
+    await initMangaPage();
+    refreshMangaGrid(true);
+    return;
+  }
 
   pages[type]=1;
   const grid=document.getElementById(cfg.grid);
   grid.innerHTML=Array(20).fill(`<div class="skel skel-card grid-mode"></div>`).join('');
 
   let data;
-  if(type==='movie' && activeMovieGenre){
-    data = await apiDiscover('movie', activeMovieGenre, 1);
-  } else if(type==='tv' && activeTvGenre){
-    data = await apiDiscover('tv', activeTvGenre, 1);
-  } else {
+  if(type==='movie'&&activeMovieGenre) data=await apiDiscover('movie',activeMovieGenre,1);
+  else if(type==='tv'&&activeTvGenre)  data=await apiDiscover('tv',activeTvGenre,1);
+  else {
     let ep=cfg.ep;
-    if(type==='anime' && activeAnimeGenre) ep+=`?genre=${activeAnimeGenre}`;
-    data = await api(`${ep}?page=1`);
+    if(type==='anime'&&activeAnimeGenre) ep+=`?genre=${activeAnimeGenre}`;
+    data=await api(`${ep}?page=1`);
   }
 
   grid.innerHTML='';
@@ -1134,73 +1201,64 @@ async function loadMore(type){
   btn.textContent='Chargement…'; btn.disabled=true;
 
   let data;
-  if(type==='movie' && activeMovieGenre){
-    data = await apiDiscover('movie', activeMovieGenre, pages[type]);
-  } else if(type==='tv' && activeTvGenre){
-    data = await apiDiscover('tv', activeTvGenre, pages[type]);
-  } else if(type==='anime'){
-    const ep = activeAnimeGenre ? `/anime?genre=${activeAnimeGenre}&page=${pages[type]}` : `/anime?page=${pages[type]}`;
-    data = await api(ep);
-  } else {
-    data = await api(`${cfg.ep}?page=${pages[type]}`);
-  }
+  if(type==='movie'&&activeMovieGenre) data=await apiDiscover('movie',activeMovieGenre,pages[type]);
+  else if(type==='tv'&&activeTvGenre)  data=await apiDiscover('tv',activeTvGenre,pages[type]);
+  else if(type==='anime'){
+    const ep=activeAnimeGenre?`/anime?genre=${activeAnimeGenre}&page=${pages[type]}`:`/anime?page=${pages[type]}`;
+    data=await api(ep);
+  } else data=await api(`${cfg.ep}?page=${pages[type]}`);
 
   if(data?.results?.length){
-    document.getElementById(cfg.grid).insertAdjacentHTML('beforeend',
-      data.results.map(i=>createCard(i,type)).join(''));
+    document.getElementById(cfg.grid).insertAdjacentHTML('beforeend',data.results.map(i=>createCard(i,type)).join(''));
     btn.textContent='Charger plus'; btn.disabled=false;
-    if(pages[type]>=(data.total_pages||999)){ btn.textContent='Fin'; btn.disabled=true; }
-  }else{ btn.textContent='Fin'; btn.disabled=true; }
+    if(pages[type]>=(data.total_pages||999)){btn.textContent='Fin ✓';btn.disabled=true;}
+  } else {btn.textContent='Fin ✓';btn.disabled=true;}
 }
 
-async function loadMangaGrid(reset=false){
-  if(reset) mangaOffset=0;
-  const btn=document.getElementById('mangaMore');
-  btn.textContent='Chargement…'; btn.disabled=true;
-  const data=await api(`/manga/list?limit=20&offset=${mangaOffset}&lang=fr`);
-  const grid=document.getElementById('mangaGrid');
-  if(reset) grid.innerHTML='';
-  if(data?.data?.length){
-    grid.insertAdjacentHTML('beforeend', data.data.map(m=>mangaCard(m)).join(''));
-    mangaOffset+=20;
-    btn.textContent='Charger plus'; btn.disabled=false;
-    if(mangaOffset>=(data.total||0)){ btn.textContent='Fin'; btn.disabled=true; }
-  }else{ btn.textContent='Fin'; btn.disabled=true; }
-}
-function loadMoreManga(){ loadMangaGrid(false); }
-
 // ════════════════════════════════════════════════════
-//  PLAYER — Langue VF / VOSTFR
+//  PLAYER — Langue
 // ════════════════════════════════════════════════════
-function setPlayerLang(lang, btn){
-  playerLang = lang;
-  document.getElementById('langVF').className = 'plang-btn' + (lang==='vf'?' active-vf':'');
-  document.getElementById('langVOSTFR').className = 'plang-btn' + (lang==='vostfr'?' active-vostfr':'');
-  toast(lang==='vf'?'🇫🇷 Version Française':'🇫🇷 VOSTFR — sous-titres français', 'info');
-
-  // Recharger la source courante avec la nouvelle langue
+function setPlayerLang(lang,btn){
+  playerLang=lang;
+  document.getElementById('langVF').className='plang-btn'+(lang==='vf'?' active-vf':'');
+  document.getElementById('langVOSTFR').className='plang-btn'+(lang==='vostfr'?' active-vostfr':'');
+  const msg=lang==='vf'?'🇫🇷 VF demandée — Frembed en priorité':'🇫🇷 VOSTFR — sous-titres français';
+  toast(msg,'info');
+  // Recharger avec la nouvelle langue
   if(currentItem){
-    const src = VIDEO_SOURCES[currentSource];
-    if(src.type==='frembed'){
-      tryFrembed(currentItem.id, currentType, currentSeason, currentEp);
-    } else {
-      playIframe(currentItem.id, currentType, currentSeason, currentEp, currentSource);
-    }
+    const src=VIDEO_SOURCES[currentSource];
+    if(src.type==='frembed') tryFrembed(currentItem.id,currentType,currentSeason,currentEp);
+    else playIframe(currentItem.id,currentType,currentSeason,currentEp,currentSource);
   }
+}
+
+function updateLangBadge(detected){
+  const badge=document.getElementById('langBadge');
+  badge.style.display='';
+  const map={
+    'vf':     {cls:'vf',    text:'🇫🇷 VF détectée'},
+    'vostfr': {cls:'vostfr',text:'🇫🇷 VOSTFR'},
+    'vo':     {cls:'vo',    text:'VO (sans VF)'},
+  };
+  const m=map[detected]||{cls:'vo',text:'VO'};
+  badge.className=`lang-detected-badge ${m.cls}`;
+  badge.textContent=m.text;
 }
 
 // ════════════════════════════════════════════════════
 //  PLAYER — Sources
 // ════════════════════════════════════════════════════
-function buildSourceStrip(id, type){
+function buildSourceStrip(id,type){
   const strip=document.getElementById('sourceStrip');
   strip.innerHTML=VIDEO_SOURCES.map((s,i)=>{
-    const statusClass = srcStatus[i]==='ok'?' ok-badge':srcStatus[i]==='err'?' err-badge':'';
-    return `<button class="src-btn${statusClass}" data-srcidx="${i}" onclick="switchSrc(${i},this,${id},'${type}')">${s.name}</button>`;
+    const vo=s.voOnly?'<span style="font-size:.55rem;color:var(--muted)">VO</span>':'';
+    const st=srcStatus[i]==='ok'?' ok-badge':srcStatus[i]==='err'?' err-badge':'';
+    const voCls=s.voOnly?' vo-only':'';
+    return `<button class="src-btn${st}${voCls}" data-si="${i}" onclick="switchSrc(${i},this,${id},'${type}')">${s.name}${vo}</button>`;
   }).join('');
 }
 
-function markSrcStatus(idx, status){
+function markSrcStatus(idx,status){
   srcStatus[idx]=status;
   const btns=document.querySelectorAll('.src-btn');
   if(btns[idx]){
@@ -1210,53 +1268,52 @@ function markSrcStatus(idx, status){
   }
 }
 
-async function openPlayer(id, type, title, season=1, ep=1){
-  currentItem={id,type,title};
-  currentType=type;
-  currentSeason=season;
-  currentEp=ep;
-  currentSource=0;
-  srcStatus={};
+async function openPlayer(id,type,title,season=1,ep=1){
+  currentItem={id,type,title}; currentType=type;
+  currentSeason=season; currentEp=ep; currentSource=0; srcStatus={};
 
   document.getElementById('playerTitle').textContent=title;
   document.getElementById('playerSub').textContent=type==='movie'?'Film':`S${season} · E${ep}`;
   document.getElementById('playerModal').classList.add('open');
   document.getElementById('playerError').classList.remove('show');
+  document.getElementById('langBadge').style.display='none';
   document.body.style.overflow='hidden';
 
-  buildSourceStrip(id, type);
+  buildSourceStrip(id,type);
   document.querySelectorAll('.src-btn')[0]?.classList.add('active');
 
   if(type!=='movie'){
     document.getElementById('epPanel').style.display='flex';
-    await loadSeasonPanel(id, season);
+    await loadSeasonPanel(id,season);
   } else {
     document.getElementById('epPanel').style.display='none';
   }
 
   showLoader(true);
-  await tryFrembed(id, type, season, ep);
+  await tryFrembed(id,type,season,ep);
 }
 
-async function tryFrembed(id, type, s, e){
-  setLoaderText('Frembed — source directe…');
-  let endpoint=`/sources/${id}?type=${type}`;
-  if(type!=='movie' && s && e) endpoint+=`&s=${s}&e=${e}`;
-  // Langue pour Frembed : passe le paramètre lang
-  endpoint += `&lang=${playerLang}`;
-  const data=await api(endpoint);
+// ── Frembed : source directe HLS, sans pubs, avec détection VF ──
+async function tryFrembed(id,type,s,e){
+  setLoaderText('Chargement Frembed — source directe (HLS)…');
+  let ep=`/sources/${id}?type=${type}&lang=${playerLang}`;
+  if(type!=='movie'&&s&&e) ep+=`&s=${s}&e=${e}`;
+
+  const data=await api(ep);
 
   if(data?.sources?.length){
-    playNative(data.sources[0].url);
-    markSrcStatus(0, 'ok');
-    toast('Frembed — lecture directe', 'success');
+    playNative(data.sources[0].url, data);
+    markSrcStatus(0,'ok');
     return true;
   }
-  // Fallback VidLink (idx 1)
-  markSrcStatus(0, 'err');
+
+  // Frembed n'a pas de source → passer à VidLink (idx 1)
+  console.warn('[player] Frembed indisponible, fallback VidLink');
+  markSrcStatus(0,'err');
   currentSource=1;
-  document.querySelectorAll('.src-btn').forEach((b,i)=>b.classList.toggle('active', i===1));
-  playIframe(id, type, s, e, 1);
+  document.querySelectorAll('.src-btn').forEach((b,i)=>b.classList.toggle('active',i===1));
+  if(VIDEO_SOURCES[1].voOnly) updateLangBadge('vo');
+  playIframe(id,type,s,e,1);
   return false;
 }
 
@@ -1265,64 +1322,100 @@ function setLoaderText(txt){
   if(el) el.textContent=txt;
 }
 
-function playNative(src){
+// ── Lecture native HLS — sélection automatique piste française ──
+function playNative(src, frembedData=null){
   const video=document.getElementById('nativeVideo');
   const iframe=document.getElementById('playerIframe');
-  iframe.src='about:blank';
-  iframe.style.display='none';
+  iframe.src='about:blank'; iframe.style.display='none';
   video.style.display='block';
   showLoader(false);
 
-  if(window.Hls && Hls.isSupported() && src.includes('.m3u8')){
-    if(hlsInst){ hlsInst.destroy(); hlsInst=null; }
-    hlsInst=new Hls();
+  if(window.Hls&&Hls.isSupported()&&(src.includes('.m3u8')||src.includes('/hls'))){
+    if(hlsInst){hlsInst.destroy();hlsInst=null;}
+    hlsInst=new Hls({enableWorker:true});
     hlsInst.loadSource(src);
     hlsInst.attachMedia(video);
-    hlsInst.on(Hls.Events.MANIFEST_PARSED, ()=>video.play());
+
+    hlsInst.on(Hls.Events.MANIFEST_PARSED,(evt,data)=>{
+      video.play().catch(()=>{});
+      const tracks=data.audioTracks||[];
+      let langDetected='vo';
+
+      if(tracks.length>1){
+        // Chercher une piste française
+        const frIdx=tracks.findIndex(t=>{
+          const l=(t.lang||t.language||t.name||'').toLowerCase();
+          return l.includes('fr')||l.includes('fre')||l.includes('fra')||l.includes('français');
+        });
+        if(frIdx>-1){
+          hlsInst.audioTrack=frIdx;
+          langDetected=playerLang==='vostfr'?'vostfr':'vf';
+          toast(`🇫🇷 Piste audio ${langDetected.toUpperCase()} sélectionnée`,'success');
+        } else {
+          toast('⚠️ Pas de piste VF disponible — lecture en VO','warn',3500);
+        }
+      } else if(tracks.length===1){
+        const l=(tracks[0].lang||tracks[0].language||tracks[0].name||'').toLowerCase();
+        if(l.includes('fr')||l.includes('fre')||l.includes('fra')){
+          langDetected=playerLang==='vostfr'?'vostfr':'vf';
+          toast(`🇫🇷 Audio ${langDetected.toUpperCase()}`,'success');
+        } else {
+          toast('Lecture en VO','info');
+        }
+      }
+
+      // Sous-titres Frembed
+      if(frembedData?.subtitles?.length&&video.textTracks){
+        frembedData.subtitles.forEach(sub=>{
+          const track=document.createElement('track');
+          track.kind='subtitles';
+          track.label=sub.label||sub.lang||'Sous-titres';
+          track.srclang=sub.lang||'fr';
+          track.src=sub.url||sub.file||'';
+          if((sub.lang||sub.label||'').toLowerCase().includes('fr')){
+            track.default=true;
+            langDetected=langDetected==='vo'?'vostfr':langDetected;
+          }
+          video.appendChild(track);
+        });
+      }
+      updateLangBadge(langDetected);
+    });
+
+    hlsInst.on(Hls.Events.ERROR,(evt,data)=>{
+      if(data.fatal){
+        console.error('[HLS fatal]',data);
+        markSrcStatus(0,'err');
+        nextSource();
+      }
+    });
   } else {
-    video.src=src;
-    video.play().catch(()=>{});
+    // Lecture directe (MP4 ou navigateur compatible HLS natif)
+    video.src=src; video.play().catch(()=>{});
   }
 }
 
-function playIframe(id, type, s, e, srcIdx){
-  const src=VIDEO_SOURCES[srcIdx];
-  if(!src || src.type==='frembed') return;
-
-  const url = type==='movie'
-    ? src.movie(id, playerLang)
-    : src.tv(id, s, e, playerLang);
-
+function playIframe(id,type,s,e,srcIdx){
+  const src=VIDEO_SOURCES[srcIdx]; if(!src||src.type==='frembed') return;
+  const url=type==='movie'?src.movie(id,playerLang):src.tv(id,s,e,playerLang);
   const video=document.getElementById('nativeVideo');
   const iframe=document.getElementById('playerIframe');
-  if(hlsInst){ hlsInst.destroy(); hlsInst=null; }
+  if(hlsInst){hlsInst.destroy();hlsInst=null;}
   video.pause(); video.src=''; video.style.display='none';
-  iframe.style.display='block';
-  iframe.src='about:blank';
+  iframe.style.display='block'; iframe.src='about:blank';
 
   showLoader(true);
   setLoaderText(`Chargement ${src.name}…`);
+  if(src.voOnly) updateLangBadge('vo');
 
-  // Timeout si l'iframe ne répond pas
-  let loadTimeout=setTimeout(()=>{
-    showLoader(false);
-  }, 8000);
-
+  const t=setTimeout(()=>showLoader(false),7000);
   iframe.onload=()=>{
-    clearTimeout(loadTimeout);
-    showLoader(false);
-    // On vérifie si c'est un iframe sandbox error (heuristique : titre de la page)
-    try {
-      const iTitle = iframe.contentDocument?.title || '';
-      if(iTitle.toLowerCase().includes('sandbox') || iTitle.toLowerCase().includes('blocked')){
-        markSrcStatus(srcIdx, 'err');
-        showPlayerError(`${src.name} a détecté un sandbox. Essaie une autre source.`);
-        return;
-      }
-    } catch(e){ /* cross-origin, normal */ }
-    markSrcStatus(srcIdx, 'ok');
+    clearTimeout(t); showLoader(false);
+    markSrcStatus(srcIdx,'ok');
+    if(!src.voOnly){
+      if(playerLang==='vostfr') updateLangBadge('vostfr');
+    }
   };
-
   iframe.src=url;
 }
 
@@ -1331,76 +1424,59 @@ function showPlayerError(msg=''){
   if(msg) document.getElementById('playerErrorMsg').textContent=msg;
   showLoader(false);
 }
-function hidePlayerError(){
-  document.getElementById('playerError').classList.remove('show');
-}
+function hidePlayerError(){document.getElementById('playerError').classList.remove('show');}
 
 function nextSource(){
   hidePlayerError();
-  const nextIdx = currentSource + 1;
-  if(nextIdx >= VIDEO_SOURCES.length){ toast('Plus de sources disponibles', 'error'); return; }
-  currentSource = nextIdx;
-  document.querySelectorAll('.src-btn').forEach((b,i)=>b.classList.toggle('active', i===nextIdx));
-  if(VIDEO_SOURCES[nextIdx].type==='frembed'){
-    tryFrembed(currentItem.id, currentType, currentSeason, currentEp);
-  } else {
-    playIframe(currentItem.id, currentType, currentSeason, currentEp, nextIdx);
-  }
+  const next=currentSource+1;
+  if(next>=VIDEO_SOURCES.length){toast('Plus de sources disponibles','error');return;}
+  currentSource=next;
+  document.querySelectorAll('.src-btn').forEach((b,i)=>b.classList.toggle('active',i===next));
+  if(VIDEO_SOURCES[next].type==='frembed') tryFrembed(currentItem.id,currentType,currentSeason,currentEp);
+  else playIframe(currentItem.id,currentType,currentSeason,currentEp,next);
 }
 
-async function switchSrc(idx, btn, id, type){
+async function switchSrc(idx,btn,id,type){
   currentSource=idx;
   document.querySelectorAll('.src-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  hidePlayerError();
-  showLoader(true);
-
+  btn.classList.add('active'); hidePlayerError(); showLoader(true);
   const src=VIDEO_SOURCES[idx];
-  if(src.type==='frembed'){
-    await tryFrembed(id||currentItem.id, type||currentType, currentSeason, currentEp);
-  } else {
-    playIframe(id||currentItem.id, type||currentType, currentSeason, currentEp, idx);
-  }
+  if(src.type==='frembed') await tryFrembed(id||currentItem.id,type||currentType,currentSeason,currentEp);
+  else playIframe(id||currentItem.id,type||currentType,currentSeason,currentEp,idx);
 }
 
-function showLoader(v){
-  document.getElementById('playerLoader').classList.toggle('hidden', !v);
-}
+function showLoader(v){document.getElementById('playerLoader').classList.toggle('hidden',!v);}
 
 // ════════════════════════════════════════════════════
-//  EPISODE PANEL
+//  ÉPISODES
 // ════════════════════════════════════════════════════
-async function loadSeasonPanel(showId, activeSeason=1){
-  const data=await api(`/details/tv/${showId}`);
-  if(!data?.seasons) return;
+async function loadSeasonPanel(showId,activeSeason=1){
+  const data=await api(`/details/tv/${showId}`); if(!data?.seasons) return;
   const seasons=data.seasons.filter(s=>s.season_number>0);
   const sel=document.getElementById('seasonSel');
   sel.innerHTML=seasons.map(s=>`<option value="${s.season_number}"${s.season_number===activeSeason?' selected':''}>${s.name}</option>`).join('');
-  await loadEpisodeList(showId, activeSeason);
+  await loadEpisodeList(showId,activeSeason);
 }
 
-async function loadEpisodeList(showId, seasonNum){
+async function loadEpisodeList(showId,seasonNum){
   const epList=document.getElementById('epList');
-  epList.innerHTML=`<div style="padding:1rem;color:var(--muted);font-size:.8rem;text-align:center">Chargement…</div>`;
-
+  epList.innerHTML=`<div style="padding:1rem;color:var(--muted);font-size:.8rem;text-align:center">${IC.spin} Chargement…</div>`;
   const data=await api(`/season/${showId}/${seasonNum}`);
-  if(!data?.episodes?.length){ epList.innerHTML='<div style="padding:1rem;color:var(--muted);font-size:.8rem">Aucun épisode disponible</div>'; return; }
-
+  if(!data?.episodes?.length){epList.innerHTML='<div style="padding:1rem;color:var(--muted);font-size:.8rem">Aucun épisode disponible</div>';return;}
   document.getElementById('epCount').textContent=`${data.episodes.length} épisodes`;
   const title=currentItem?.title||'';
   epList.innerHTML=data.episodes.map(ep=>{
     const still=ep.still_path?EP_STILL+ep.still_path:'';
     const air=(ep.air_date||'').slice(0,10);
     const runtime=ep.runtime?`${ep.runtime} min`:'';
-    const overview=ep.overview||'Pas de synopsis disponible.';
-    const isActive=(currentSeason===seasonNum && currentEp===ep.episode_number);
-    return `<div class="ep-item${isActive?' active-ep':''}" onclick="watchEp(${showId},'${title.replace(/'/g,"\\'")}',${seasonNum},${ep.episode_number})">
+    const isActive=(currentSeason===seasonNum&&currentEp===ep.episode_number);
+    return `<div class="ep-item${isActive?' active-ep':''}" onclick="watchEp(${showId},'${title.replace(/'/g,"\\'")}',${seasonNum},${ep.episode_number},event)">
       <span class="ep-num">${ep.episode_number}</span>
       ${still?`<img class="ep-still" src="${still}" alt="" loading="lazy">`:`<div class="ep-still" style="background:var(--bg3);border-radius:.35rem;display:flex;align-items:center;justify-content:center">${IC.tv}</div>`}
       <div class="ep-info">
         <div class="ep-name">${ep.name||`Épisode ${ep.episode_number}`}</div>
         <div class="ep-air">${[air,runtime].filter(Boolean).join(' · ')}</div>
-        <div class="ep-overview">${overview}</div>
+        <div class="ep-overview">${ep.overview||'Pas de synopsis.'}</div>
       </div>
       <div class="ep-play-icon">${IC.play}</div>
     </div>`;
@@ -1410,33 +1486,26 @@ async function loadEpisodeList(showId, seasonNum){
 async function onSeasonChange(){
   const s=parseInt(document.getElementById('seasonSel').value);
   currentSeason=s;
-  await loadEpisodeList(currentItem.id, s);
+  await loadEpisodeList(currentItem.id,s);
 }
 
-function watchEp(showId, title, season, ep){
+function watchEp(showId,title,season,ep,e){
   currentSeason=season; currentEp=ep;
   document.getElementById('playerSub').textContent=`S${season} · E${ep}`;
   hidePlayerError();
-
-  // Mettre à jour le highlight de l'épisode actif
   document.querySelectorAll('.ep-item').forEach(el=>el.classList.remove('active-ep'));
-  event?.currentTarget?.classList?.add('active-ep');
-
-  if(currentSource===0){
-    tryFrembed(showId, 'tv', season, ep);
-  } else {
-    playIframe(showId, 'tv', season, ep, currentSource);
-  }
+  e?.currentTarget?.classList?.add('active-ep');
+  if(currentSource===0) tryFrembed(showId,'tv',season,ep);
+  else playIframe(showId,'tv',season,ep,currentSource);
 }
 
 function closePlayer(){
   document.getElementById('playerModal').classList.remove('open');
   const iframe=document.getElementById('playerIframe');
   const video=document.getElementById('nativeVideo');
-  iframe.src='about:blank';
-  video.pause(); video.src=''; video.style.display='none';
+  iframe.src='about:blank'; video.pause(); video.src=''; video.style.display='none';
   iframe.style.display='block';
-  if(hlsInst){ hlsInst.destroy(); hlsInst=null; }
+  if(hlsInst){hlsInst.destroy();hlsInst=null;}
   document.getElementById('playerError').classList.remove('show');
   document.body.style.overflow='';
 }
@@ -1444,16 +1513,12 @@ function closePlayer(){
 // ════════════════════════════════════════════════════
 //  DETAIL MODAL
 // ════════════════════════════════════════════════════
-async function openDetail(id, type){
-  const data=await api(`/details/${type}/${id}`);
-  if(!data) return;
-  detailItem={...data, type};
-  detailShowId=id;
-
+async function openDetail(id,type){
+  const data=await api(`/details/${type}/${id}`); if(!data) return;
+  detailItem={...data,type};
   document.getElementById('detailBg').src=data.backdrop_path?BACKDROP+data.backdrop_path:'';
   document.getElementById('detailTitle').textContent=data.title||data.name||'';
-  document.getElementById('detailOverview').textContent=data.overview||'Pas de description disponible.';
-
+  document.getElementById('detailOverview').textContent=data.overview||'Pas de description.';
   const v=data.vote_average||0;
   const year=(data.release_date||data.first_air_date||'').slice(0,4);
   const genres=data.genres?.slice(0,3).map(g=>g.name).join(', ')||'';
@@ -1464,34 +1529,29 @@ async function openDetail(id, type){
     data.runtime?`<span class="d-badge">${data.runtime} min</span>`:
       data.number_of_seasons?`<span class="d-badge">${data.number_of_seasons} saison${data.number_of_seasons>1?'s':''}</span>`:''
   ].filter(Boolean).join('');
-
   const seasonsWrap=document.getElementById('detailSeasons');
-  if(type!=='movie' && data.seasons?.length){
+  if(type!=='movie'&&data.seasons?.length){
     seasonsWrap.style.display='';
     const seasons=data.seasons.filter(s=>s.season_number>0);
-    document.getElementById('seasonTabs').innerHTML=
-      seasons.map((s,i)=>`<button class="season-tab${i===0?' active':''}" onclick="selectDetailSeason(${s.season_number},${id},this)">${s.name}</button>`).join('');
-    await loadDetailEpisodes(id, seasons[0]?.season_number||1);
-  } else {
-    seasonsWrap.style.display='none';
-  }
-
+    document.getElementById('seasonTabs').innerHTML=seasons.map((s,i)=>
+      `<button class="season-tab${i===0?' active':''}" onclick="selectDetailSeason(${s.season_number},${id},this)">${s.name}</button>`).join('');
+    await loadDetailEpisodes(id,seasons[0]?.season_number||1);
+  } else {seasonsWrap.style.display='none';}
   document.getElementById('detailModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 
-async function selectDetailSeason(sNum, showId, btn){
+async function selectDetailSeason(sNum,showId,btn){
   document.querySelectorAll('.season-tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  await loadDetailEpisodes(showId, sNum);
+  await loadDetailEpisodes(showId,sNum);
 }
 
-async function loadDetailEpisodes(showId, seasonNum){
+async function loadDetailEpisodes(showId,seasonNum){
   const list=document.getElementById('epListDetail');
   list.innerHTML=`<div style="padding:1rem;color:var(--muted);font-size:.78rem">Chargement…</div>`;
   const data=await api(`/season/${showId}/${seasonNum}`);
-  if(!data?.episodes?.length){ list.innerHTML=''; return; }
-
+  if(!data?.episodes?.length){list.innerHTML='';return;}
   const title=detailItem?.name||'';
   list.innerHTML=data.episodes.map(ep=>{
     const still=ep.still_path?EP_STILL+ep.still_path:'';
@@ -1524,20 +1584,18 @@ function closeDetail(){
 // ════════════════════════════════════════════════════
 //  MANGA READER
 // ════════════════════════════════════════════════════
-async function openMangaReader(mangaId, title){
+async function openMangaReader(mangaId,title){
   document.getElementById('readerTitle').textContent=title;
   document.getElementById('readerInfo').textContent='Chargement…';
   document.getElementById('readerModal').classList.add('open');
   document.body.style.overflow='hidden';
   document.getElementById('readerBody').innerHTML=`<div class="reader-empty">${IC.book} Chargement des chapitres…</div>`;
   document.getElementById('readerNav').style.display='none';
-
   const data=await api(`/manga/chapters/${mangaId}`);
   if(!data?.data?.length){
     document.getElementById('readerBody').innerHTML=`<div class="reader-empty">${IC.book} Aucun chapitre disponible</div>`;
     return;
   }
-
   mangaChapters=data.data;
   const sel=document.getElementById('chapSel');
   sel.innerHTML=mangaChapters.map((ch,i)=>{
@@ -1557,21 +1615,15 @@ async function loadChapter(idx){
   document.getElementById('chapSel').value=idx;
   document.getElementById('readerInfo').textContent=`Chapitre ${ch.attributes?.chapter||'?'}`;
   document.getElementById('readerBody').innerHTML=`<div class="reader-empty">${IC.book} Chargement des pages…</div>`;
-
   const data=await api(`/manga/pages/${ch.id}`);
-  if(!data?.chapter){
-    document.getElementById('readerBody').innerHTML=`<div class="reader-empty">Pages introuvables</div>`;
-    return;
-  }
-  const base=data.baseUrl, hash=data.chapter.hash, pgs=data.chapter.data||[];
+  if(!data?.chapter){document.getElementById('readerBody').innerHTML=`<div class="reader-empty">Pages introuvables</div>`;return;}
+  const base=data.baseUrl,hash=data.chapter.hash,pgs=data.chapter.data||[];
   mangaPages=pgs.map(p=>`${base}/data/${hash}/${p}`);
   pageIdx=0;
-
   readerMode==='scroll'?renderScroll():renderPage(0);
   document.getElementById('prevChap').disabled=idx>=mangaChapters.length-1;
   document.getElementById('nextChap').disabled=idx<=0;
 }
-
 function renderScroll(){
   document.getElementById('pageNavBtns').style.display='none';
   document.getElementById('pageCounter').textContent=`${mangaPages.length} pages`;
@@ -1592,31 +1644,22 @@ function setMode(mode){
   document.getElementById('modePage').classList.toggle('active',mode==='page');
   mode==='scroll'?renderScroll():renderPage(0);
 }
-function prevPage(){ renderPage(pageIdx-1); }
-function nextPage(){ renderPage(pageIdx+1); }
-function prevChapter(){
-  const idx=parseInt(document.getElementById('chapSel').value);
-  if(idx<mangaChapters.length-1) loadChapter(idx+1);
-}
-function nextChapter(){
-  const idx=parseInt(document.getElementById('chapSel').value);
-  if(idx>0) loadChapter(idx-1);
-}
-function closeReader(){
-  document.getElementById('readerModal').classList.remove('open');
-  document.body.style.overflow='';
-}
+function prevPage(){renderPage(pageIdx-1);}
+function nextPage(){renderPage(pageIdx+1);}
+function prevChapter(){const i=parseInt(document.getElementById('chapSel').value);if(i<mangaChapters.length-1)loadChapter(i+1);}
+function nextChapter(){const i=parseInt(document.getElementById('chapSel').value);if(i>0)loadChapter(i-1);}
+function closeReader(){document.getElementById('readerModal').classList.remove('open');document.body.style.overflow='';}
 
 // ════════════════════════════════════════════════════
 //  SEARCH
 // ════════════════════════════════════════════════════
 function handleSearch(e){
   clearTimeout(searchTimer);
-  searchTimer=setTimeout(doSearch, 550);
+  searchTimer=setTimeout(doSearch,550);
 }
 async function doSearch(){
   const q=document.getElementById('searchInput').value.trim();
-  if(!q){ goHome(); return; }
+  if(!q){goHome();return;}
   clearTimeout(heroTimer);
   document.getElementById('heroSection').style.display='none';
   hideAll();
@@ -1640,7 +1683,7 @@ async function doSearch(){
 // ════════════════════════════════════════════════════
 function hideAll(){
   ['homePage','moviesPage','seriesPage','animePage','mangaPage','searchPage']
-    .forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
+    .forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});
 }
 function goHome(){
   clearTimeout(heroTimer);
@@ -1652,19 +1695,15 @@ function goHome(){
   document.getElementById('searchInput').value='';
   loadHome();
 }
-function switchNav(idx, btn){
+function switchNav(idx,btn){
   const types=[null,'movie','tv','anime','manga'];
   if(types[idx]) goSection(types[idx]); else goHome();
   document.querySelectorAll('.nav-link').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
-
-// ════════════════════════════════════════════════════
-//  NAVBAR SCROLL
-// ════════════════════════════════════════════════════
 function initNav(){
   window.addEventListener('scroll',()=>{
-    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY>40);
+    document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>40);
   },{passive:true});
 }
 
@@ -1672,47 +1711,33 @@ function initNav(){
 //  CURSOR
 // ════════════════════════════════════════════════════
 function initCursor(){
-  const dot=document.getElementById('cDot');
-  const ring=document.getElementById('cRing');
-  let mx=window.innerWidth/2, my=window.innerHeight/2;
-  let rx=mx, ry=my;
-
-  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; });
-  document.addEventListener('mouseover',e=>{
-    if(e.target.closest('button,a,.card,[onclick]')){
-      ring.classList.add('hover');
-    }
-  });
-  document.addEventListener('mouseout',e=>{
-    if(e.target.closest('button,a,.card,[onclick]')){
-      ring.classList.remove('hover');
-    }
-  });
+  const dot=document.getElementById('cDot'),ring=document.getElementById('cRing');
+  let mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  document.addEventListener('mouseover',e=>{if(e.target.closest('button,a,.card,[onclick]'))ring.classList.add('hover');});
+  document.addEventListener('mouseout',e=>{if(e.target.closest('button,a,.card,[onclick]'))ring.classList.remove('hover');});
   document.addEventListener('mousedown',()=>ring.classList.add('click'));
   document.addEventListener('mouseup',()=>ring.classList.remove('click'));
-  document.addEventListener('mouseleave',()=>{ dot.style.opacity='0'; ring.style.opacity='0'; });
-  document.addEventListener('mouseenter',()=>{ dot.style.opacity='1'; ring.style.opacity='1'; });
-
-  function tick(){
-    rx+=(mx-rx)*0.13;
-    ry+=(my-ry)*0.13;
+  document.addEventListener('mouseleave',()=>{dot.style.opacity='0';ring.style.opacity='0';});
+  document.addEventListener('mouseenter',()=>{dot.style.opacity='1';ring.style.opacity='1';});
+  (function tick(){
+    rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
     dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;
     ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;
     requestAnimationFrame(tick);
-  }
-  tick();
+  })();
 }
 
 // ════════════════════════════════════════════════════
 //  TOAST
 // ════════════════════════════════════════════════════
 let toastTimer=null;
-function toast(msg, type='', d=2800){
+function toast(msg,type='',d=2800){
   const el=document.getElementById('toast');
   el.textContent=msg;
   el.className=`show${type?' '+type:''}`;
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>el.className='', d);
+  toastTimer=setTimeout(()=>el.className='',d);
 }
 
 // ════════════════════════════════════════════════════
@@ -1724,14 +1749,10 @@ document.addEventListener('keydown',e=>{
     else if(document.getElementById('readerModal').classList.contains('open')) closeReader();
     else if(document.getElementById('detailModal').classList.contains('open')) closeDetail();
   }
-  if(e.key==='/' && !e.target.matches('input')){
-    e.preventDefault();
-    document.getElementById('searchInput').focus();
-  }
-  // Flèches gauche/droite pour naviguer les pages manga
-  if(document.getElementById('readerModal').classList.contains('open') && readerMode==='page'){
+  if(e.key==='/'&&!e.target.matches('input,textarea')){e.preventDefault();document.getElementById('searchInput').focus();}
+  if(document.getElementById('readerModal').classList.contains('open')&&readerMode==='page'){
     if(e.key==='ArrowRight') nextPage();
-    if(e.key==='ArrowLeft') prevPage();
+    if(e.key==='ArrowLeft')  prevPage();
   }
 });
 </script>
