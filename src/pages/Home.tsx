@@ -173,7 +173,7 @@ function AniListCard({ media }: { media: any }) {
   };
 
   return (
-    <div className="relative group cursor-pointer" onClick={() => window.location.href = `/anime/al/${media.id}`}>
+    <div className="relative group cursor-pointer" onClick={() => window.location.href = `/anime/${media.id}`}>
       <div className="aspect-[2/3] overflow-hidden rounded-lg bg-nova-card">
         {media.coverImage?.large && (
           <img
