@@ -14,7 +14,7 @@ const Watch     = lazy(() => import('@/pages/Watch'));
 const Search    = lazy(() => import('@/pages/Search'));
 const Profile   = lazy(() => import('@/pages/Profile'));
 const Watchlist = lazy(() => import('@/pages/Watchlist'));
-
+const AnimeCatalog = lazy(() => import('@/pages/Anime'));
 // Page loader
 function PageLoader() {
   return (
@@ -48,6 +48,7 @@ function AppContent() {
             <Route path="/search"     element={<Search />} />
             <Route path="/profile"    element={<Profile />} />
             <Route path="/watchlist"  element={<Watchlist />} />
+            <Route path="/anime" element={<AnimeCatalog />} />
             <Route path="*"           element={<NotFound />} />
           </Routes>
         </Suspense>
