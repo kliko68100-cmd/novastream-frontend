@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ────────────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-nova-bg text-nova-text font-sans;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-nova-border rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-nova-muted; }
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { scrollbar-width: none; }
+
+/* ── Safe area ───────────────────────────────────────────────── */
+
+.safe-area-pb { padding-bottom: env(safe-area-inset-bottom, 0); }
+.safe-area-pt { padding-top:    env(safe-area-inset-top, 0); }
+
+/* ── Video player ────────────────────────────────────────────── */
+
+video::-webkit-media-controls { display: none !important; }
+video::-webkit-media-controls-enclosure { display: none !important; }
+
+/* ── Selection ───────────────────────────────────────────────── */
+
+::selection { background: rgba(230, 57, 80, 0.3); }
+
+/* ── Transitions ─────────────────────────────────────────────── */
+
+.page-transition {
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* ── Range input ─────────────────────────────────────────────── */
+
+input[type='range'] {
+  -webkit-appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  @apply bg-nova-border;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  @apply bg-white;
+  cursor: pointer;
+}
+
+/* ── Subtitle track ──────────────────────────────────────────── */
+
+::cue {
+  background: rgba(0,0,0,0.8);
+  color: #f1f1fa;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+/* ── Thèmes ──────────────────────────────────────────────────────── */
+:root, [data-theme="dark"] {
+  --bg:      #0d0d14;
+  --bg2:     #13131e;
+  --border:  rgba(255,255,255,0.08);
+  --text:    #f0f0f8;
+  --text2:   #a0a0b8;
+  --muted:   #606078;
+}
+[data-theme="darker"] {
+  --bg:      #080810;
+  --bg2:     #0f0f18;
+  --border:  rgba(255,255,255,0.06);
+  --text:    #e8e8f4;
+  --text2:   #9090a8;
+  --muted:   #505068;
+}
+[data-theme="amoled"] {
+  --bg:      #000000;
+  --bg2:     #0a0a0a;
+  --border:  rgba(255,255,255,0.05);
+  --text:    #ffffff;
+  --text2:   #888888;
+  --muted:   #444444;
+}
+
+/* ── Couleurs d'accent ───────────────────────────────────────────── */
+:root, [data-accent="red"]    { --accent: #e53e3e; --accent-hover: #c53030; --accent-glow: rgba(229,62,62,0.25); }
+[data-accent="blue"]   { --accent: #3182ce; --accent-hover: #2b6cb0; --accent-glow: rgba(49,130,206,0.25); }
+[data-accent="purple"] { --accent: #805ad5; --accent-hover: #6b46c1; --accent-glow: rgba(128,90,213,0.25); }
+[data-accent="green"]  { --accent: #38a169; --accent-hover: #2f855a; --accent-glow: rgba(56,161,105,0.25); }
+[data-accent="orange"] { --accent: #dd6b20; --accent-hover: #c05621; --accent-glow: rgba(221,107,32,0.25); }
